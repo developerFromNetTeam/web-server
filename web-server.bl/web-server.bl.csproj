@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>web_server.bl</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\web-server.dal\web-server.dal.csproj" />
+    <ProjectReference Include="..\web-server.ibl\web-server.ibl.csproj" />
+  </ItemGroup>
+
+</Project>
