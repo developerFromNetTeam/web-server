@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using web_server.ibl;
 using web_server.IServices;
@@ -21,8 +20,8 @@ namespace web_server.Controllers
             this.getUserRequestIdentity = getUserRequestIdentity;
         }
 
-        [HttpPost("/login")]
-        public async Task<IActionResult> LogIn(AuthData data)
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn([FromBody] AuthDataModel data)
         {
             try
             {
@@ -40,17 +39,21 @@ namespace web_server.Controllers
             }
         }
 
-        [HttpPost("/logout")]
-        public async Task<IActionResult> LogOut([FromBody] string token)
+        [HttpPost("logout")]
+        public async Task<IActionResult> LogOut()
         {
             try
             {
-                await this.authService.LogOutAsync(token, this.getUserRequestIdentity.GetCurrentUser().UserId);
+                await this.authService.LogOutAsync(this.getUserRequestIdentity.GetCurrentUser().UserId);
                 return Ok();
             }
             catch (ArgumentNullException)
             {
                 return BadRequest("Incorect parameters values.");
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

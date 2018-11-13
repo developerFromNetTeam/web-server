@@ -6,7 +6,7 @@ namespace web_server.ibl
     {
         Task<string> ValidateAndLoginAsync(string login, string pass, string ip, string city);
 
-        Task LogOutAsync(string authToken, string userId);
+        Task LogOutAsync(string userId, bool isAutoEnd = false);
 
         Task<RequestUserInfo> GetUserInfoByAuthToken(string authToken);
     }

@@ -1,6 +1,6 @@
 ﻿namespace web_server.Models
 {
-    public class AuthData
+    public class AuthDataModel
     {
         public string Login { get; set; }
         public string Pass { get; set; }

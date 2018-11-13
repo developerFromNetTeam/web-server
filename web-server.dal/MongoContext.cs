@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace web_server.dal
     public class MongoContext : IMongoContext
     {
         private IMongoDatabase database;
+
         public MongoContext(IConfiguration config)
         {
             var client = new MongoClient(config["mongodbconnection"]);
@@ -41,14 +43,38 @@ namespace web_server.dal
 
         public async Task AddItemAsync<T>(MongoDbCollection collectionName, T item) where T : DomainBase
         {
+            if (string.IsNullOrWhiteSpace(item.Id))
+            {
+                item.Id = Guid.NewGuid().ToString();
+            }
             var collection = database.GetCollection<T>(collectionName.ToString());
             await collection.InsertOneAsync(item);
         }
 
-        public async Task UpdateManyItemAsync(MongoDbCollection collectionName, BsonDocument filter, BsonDocument updatedFields)
+        public async Task DeleteAsync(MongoDbCollection collectionName, BsonDocument filter, bool isManyDelete = false)
         {
             var collection = database.GetCollection<BsonDocument>(collectionName.ToString());
-            await collection.UpdateManyAsync(filter, updatedFields);
+            if (isManyDelete)
+            {
+                await collection.DeleteManyAsync(filter);
+            }
+            else
+            {
+                await collection.DeleteOneAsync(filter);
+            }
+        }
+
+        public async Task UpdateItemAsync(MongoDbCollection collectionName, BsonDocument filter, BsonDocument updatedFields, bool isManyUpdate = false)
+        {
+            var collection = database.GetCollection<BsonDocument>(collectionName.ToString());
+            if (isManyUpdate)
+            {
+                await collection.UpdateManyAsync(filter, updatedFields);
+            }
+            else
+            {
+                await collection.UpdateOneAsync(filter, updatedFields);
+            }
         }
     }
 }

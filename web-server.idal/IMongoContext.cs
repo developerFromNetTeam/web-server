@@ -11,6 +11,8 @@ namespace web_server.idal
         Task<IEnumerable<Hashtable>> GetItemsAsync(MongoDbCollection collectionName, BsonDocument filter, string[] fields = null);
         Task AddItemAsync<T>(MongoDbCollection collectionName, T item) where T : DomainBase;
 
-        Task UpdateManyItemAsync(MongoDbCollection collectionName, BsonDocument filter, BsonDocument updatedFields);
+        Task UpdateItemAsync(MongoDbCollection collectionName, BsonDocument filter, BsonDocument updatedFields, bool isManyUpdate = false);
+
+        Task DeleteAsync(MongoDbCollection collectionName, BsonDocument filter, bool isManyDelete = false);
     }
 }

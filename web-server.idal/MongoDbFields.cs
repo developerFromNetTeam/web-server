@@ -3,13 +3,21 @@
     public struct MongoDbFields
     {
         public static string Id = "_id";
-        public static string Login = "login";
-        public static string Password = "password";
-        public static string StartUtc = "startUtc";
-        public static string EndUtc = "endUtc";
-        public static string UserId = "userId";
-        public static string AuthToken = "authToken";
-        public static string FcmToken = "fcmToken";
-        public static string CreatedTime = "createdTime";
+        public static string Login = "Login";
+        public static string City = "City";
+        public static string Password = "Password";
+        public static string StartUtc = "StartUtc";
+        public static string EndUtc = "EndUtc";
+        public static string UserId = "UserId";
+        public static string AuthToken = "AuthToken";
+        public static string FcmToken = "FcmToken";
+        public static string CreatedTimeUtc = "CreatedTimeUtc";
+        public static string IpAddress = "IpAddress";
+        public static string IsAutoEnd = "IsAutoEnd";
+        public static string DVRName = "DvrName";
+        public static string NotificationOptions = "NotificationOptions";
+        public static string CameraSystemName = "CameraSystemName";
+        public static string CameraUserName = "CameraUserName";
+        public static string IsNotificationEnable = "IsNotificationEnable";
     }
 }

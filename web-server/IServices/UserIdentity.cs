@@ -10,9 +10,11 @@ namespace web_server.IServices
             this.UserId = info.UserId;
             this.CreatedDate = info.CreatedDate;
             this.Login = info.Login;
+            this.DVRName = info.DVRName;
         }
         public string UserId { get; private set; }
         public string Login { get; private set; }
+        public string DVRName { get; private set; }
         public DateTime CreatedDate { get; private set; }
     }
 }

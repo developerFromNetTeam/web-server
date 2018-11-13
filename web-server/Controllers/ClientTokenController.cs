@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using webserver.IServices;
+using web_server.ibl;
+using web_server.IServices;
 
 namespace web_server.Controllers
 {
     [Route("api/client-token")]
     public class ClientTokenController : Controller
     {
-        private ITokenService tokenService;
+        private IFcmTokenService fcmTokenService;
 
-        public ClientTokenController(ITokenService tokenService)
+        private IGetUserRequestIdentity getUserRequestIdentity;
+
+        public ClientTokenController(IFcmTokenService fcmTokenService, IGetUserRequestIdentity getUserRequestIdentity)
         {
-            this.tokenService = tokenService;
+            this.fcmTokenService = fcmTokenService;
+            this.getUserRequestIdentity = getUserRequestIdentity;
         }
-
+        
         // POST api/values
-        [HttpPost]
-        public IActionResult Post([FromBody]string token)
+        [HttpPost("set")]
+        public async Task<IActionResult> Post([FromBody]string fcmToken)
         {
-            this.tokenService.UpdateClientTokenAsync(token);
-            return new StatusCodeResult((int)HttpStatusCode.OK);
+            await this.fcmTokenService.UpdateClientTokenAsync(fcmToken, this.getUserRequestIdentity.GetCurrentUser().UserId);
+            return Ok();
         }
     }
 }

@@ -2,7 +2,9 @@
 {
     public enum MongoDbCollection
     {
-        Users,
-        Sessions
+        users,
+        activeSessions,
+        historySessions,
+        dvrNotificationOptions
     }
 }

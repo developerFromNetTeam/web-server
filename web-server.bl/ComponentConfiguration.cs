@@ -9,7 +9,9 @@ namespace web_server.bl
         public void Register(IServiceCollection services)
         {
             services.AddSingleton<IAuthService, AuthService>();
-            services.AddSingleton<ITokenService, TokenService>();
+            services.AddSingleton<IAuthTokenService, AuthTokenService>();
+            services.AddSingleton<IFcmTokenService, FcmTokenService>();
+            services.AddSingleton<INotificationOptionsService, NotificationOptionsService>();
 
             new web_server.dal.ComponentConfiguration().Register(services);
         }

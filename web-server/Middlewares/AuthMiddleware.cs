@@ -16,24 +16,35 @@ namespace web_server.Middlewares
 
         public async Task InvokeAsync(HttpContext context, ISetUserRequestIdentity setUserRequestIdentity, IAuthService authService)
         {
-            if (context.Request.Path.Value.ToLower() != "api/auth/login")
+            if (context.Request.Path.Value.ToLower() != "/api/auth/login")
             {
-                var token = context.Request.Headers["auth-token"];
-                var userInfo = await authService.GetUserInfoByAuthToken(token);
+                var token = context.Request.Headers["auth-token"].ToString();
 
-                if (userInfo == null)
+                if (string.IsNullOrWhiteSpace(token))
                 {
                     context.Response.StatusCode = 403;
-                    await context.Response.WriteAsync("Token is invalid");
+                    await context.Response.WriteAsync("Token is missing.");
                 }
                 else
                 {
-                    setUserRequestIdentity.SetUser(userInfo);
+                    var userInfo = await authService.GetUserInfoByAuthToken(token);
+
+                    if (userInfo == null)
+                    {
+                        context.Response.StatusCode = 403;
+                        await context.Response.WriteAsync("Token is invalid.");
+                    }
+                    else
+                    {
+                        setUserRequestIdentity.SetUser(userInfo);
+                        await _next.Invoke(context);
+                    }
                 }
             }
-
-            await _next.Invoke(context);
-
+            else
+            {
+                await _next.Invoke(context);
+            }
         }
     }
 }
