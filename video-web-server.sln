@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.ibl", "web-serve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.common", "web-server.common\web-server.common.csproj", "{FA7150C5-CD8B-4154-8EDE-8DE8A8A1D9F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashGenerator", "HashGenerator\HashGenerator.csproj", "{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web-server.hash-generator", "web-server.hash-generator\web-server.hash-generator.csproj", "{B6F7EEED-7932-42E2-BE74-14152372F104}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{FA7150C5-CD8B-4154-8EDE-8DE8A8A1D9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA7150C5-CD8B-4154-8EDE-8DE8A8A1D9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA7150C5-CD8B-4154-8EDE-8DE8A8A1D9F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F7EEED-7932-42E2-BE74-14152372F104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F7EEED-7932-42E2-BE74-14152372F104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F7EEED-7932-42E2-BE74-14152372F104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F7EEED-7932-42E2-BE74-14152372F104}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

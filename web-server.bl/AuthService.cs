@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using MongoDB.Bson;
+using web_server.hash_generator;
 using web_server.ibl;
 using web_server.idal;
 using web_server.idal.Converters;
@@ -14,10 +15,12 @@ namespace web_server.bl
     {
         private IMongoContext mongoContext;
         private IAuthTokenService authTokenService;
-        public AuthService(IMongoContext mongoContext, IAuthTokenService authTokenService)
+        private IMailClient mailClient;
+        public AuthService(IMongoContext mongoContext, IAuthTokenService authTokenService, IMailClient mailClient)
         {
             this.mongoContext = mongoContext;
             this.authTokenService = authTokenService;
+            this.mailClient = mailClient;
         }
 
         public async Task<RequestUserInfo> GetUserInfoByAuthToken(string authToken)
@@ -77,13 +80,26 @@ namespace web_server.bl
             var items = await this.mongoContext.GetItemsAsync(MongoDbCollection.users, new BsonDocument(MongoDbQueryOperators.And, new BsonArray
             {
                 new BsonDocument(MongoDbFields.Login, login),
-                new BsonDocument(MongoDbFields.Password, pass)
+                new BsonDocument(MongoDbFields.Password, HashGenerator.GenerateHash(pass))
             }), new[] { MongoDbFields.Id, MongoDbFields.Login, MongoDbFields.DVRName });
 
             var user = items.FirstOrDefault();
             if (user == null)
             {
                 throw new AuthenticationException("Invalid credentials to login.");
+            }
+
+            try
+            {
+                await this.mailClient.SendAsync(new MailModel
+                {
+                    Subject = "New user logged in.",
+                    Body = $"Login name: {login}, city: {city}, ip:{ip}"
+                });
+            }
+            catch (Exception ex)
+            {
+
             }
 
             await this.LogOutAsync(user[MongoDbFields.Id].ToString(), true);

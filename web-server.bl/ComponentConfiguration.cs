@@ -12,6 +12,7 @@ namespace web_server.bl
             services.AddSingleton<IAuthTokenService, AuthTokenService>();
             services.AddSingleton<IFcmTokenService, FcmTokenService>();
             services.AddSingleton<INotificationOptionsService, NotificationOptionsService>();
+            services.AddSingleton<IMailClient, MailClient>();
 
             new web_server.dal.ComponentConfiguration().Register(services);
         }
