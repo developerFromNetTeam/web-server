@@ -14,14 +14,17 @@ namespace web_server.Middlewares
             this._next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context, ISetUserRequestIdentity setUserRequestIdentity, IAuthService authService)
+        public async Task InvokeAsync(HttpContext context, ISetUserRequestIdentity setUserRequestIdentity, IAuthService authService, ICustomLogger<AuthMiddleware> customLogger)
         {
+            customLogger.LogInformation($"HTTP Request: {context.Request.Path.Value.ToLower()}");
+
             if (context.Request.Path.Value.ToLower() != "/api/auth/login")
             {
                 var token = context.Request.Headers["auth-token"].ToString();
 
                 if (string.IsNullOrWhiteSpace(token))
                 {
+                    customLogger.LogInformation("Token is missing.");
                     context.Response.StatusCode = 403;
                     await context.Response.WriteAsync("Token is missing.");
                 }
@@ -31,11 +34,13 @@ namespace web_server.Middlewares
 
                     if (userInfo == null)
                     {
+                        customLogger.LogInformation("Token is invalid.");
                         context.Response.StatusCode = 403;
                         await context.Response.WriteAsync("Token is invalid.");
                     }
                     else
                     {
+                        customLogger.LogInformation("Token is valid.");
                         setUserRequestIdentity.SetUser(userInfo);
                         await _next.Invoke(context);
                     }

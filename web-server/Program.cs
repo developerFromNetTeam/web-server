@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-
 namespace web_server
 {
     public class Program
@@ -19,14 +13,8 @@ namespace web_server
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseKestrel(options =>
-                {
-
-                })
-            .ConfigureLogging((context, builder) =>
-                {
-                    builder.AddSeq();
-                })
+            .UseKestrel()
+            .ConfigureLogging(builder => builder.AddFile())
                 .UseStartup<Startup>()
                 .Build();
     }

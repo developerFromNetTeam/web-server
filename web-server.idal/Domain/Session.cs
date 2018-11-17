@@ -10,6 +10,6 @@ namespace web_server.idal.Domain
         public string IpAddress { get; set; }
         public string City { get; set; }
         public DateTime StartUtc { get; set; }
-        public string DVRName { get; set; }
+        public string DvrName { get; set; }
     }
 }

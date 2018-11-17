@@ -5,23 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using webserver.IServices;
+using web_server.IServices;
 
 namespace web_server.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private ILogger<ValuesController> logger;
+        ICustomLogger<ValuesController> logger;
         private IEventIdGenerator eventIdGenerator;
-        public ValuesController(ILogger<ValuesController> logger, IEventIdGenerator eventIdGenerator)
+        public ValuesController(ICustomLogger<ValuesController> logger)
         {
+            //this.eventIdGenerator = eventIdGenerator;
             this.logger = logger;
-            this.eventIdGenerator = eventIdGenerator;
         }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            logger.LogInformation("test log message");
             return new string[] { "value1", "value2" };
         }
 
@@ -29,7 +31,6 @@ namespace web_server.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            logger.LogInformation("Get value:{value}", id);
             return "value";
         }
 

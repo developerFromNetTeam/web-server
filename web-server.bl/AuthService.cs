@@ -89,18 +89,12 @@ namespace web_server.bl
                 throw new AuthenticationException("Invalid credentials to login.");
             }
 
-            try
-            {
                 await this.mailClient.SendAsync(new MailModel
                 {
                     Subject = "New user logged in.",
                     Body = $"Login name: {login}, city: {city}, ip:{ip}"
                 });
-            }
-            catch (Exception ex)
-            {
 
-            }
 
             await this.LogOutAsync(user[MongoDbFields.Id].ToString(), true);
 
@@ -112,7 +106,7 @@ namespace web_server.bl
                 StartUtc = DateTime.UtcNow,
                 IpAddress = ip,
                 City = city,
-                DVRName = user[MongoDbFields.DVRName].ToString()
+                DvrName = user[MongoDbFields.DVRName].ToString()
             });
 
             return usersToken;
@@ -131,10 +125,6 @@ namespace web_server.bl
             if (string.IsNullOrWhiteSpace(ip))
             {
                 throw new ArgumentNullException(nameof(ip), "Invalid parameters values.");
-            }
-            if (string.IsNullOrWhiteSpace(city))
-            {
-                throw new ArgumentNullException(nameof(city), "Invalid parameters values.");
             }
         }
     }

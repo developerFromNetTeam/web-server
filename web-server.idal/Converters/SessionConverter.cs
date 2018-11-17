@@ -17,7 +17,7 @@ namespace web_server.idal.Converters
                 FcmToken = hashtable[MongoDbFields.FcmToken]?.ToString(),
                 IpAddress = hashtable[MongoDbFields.IpAddress]?.ToString(),
                 StartUtc = DateTime.Parse(hashtable[MongoDbFields.StartUtc]?.ToString()),
-                DVRName = hashtable[MongoDbFields.DVRName]?.ToString(),
+                DvrName = hashtable[MongoDbFields.DVRName]?.ToString(),
             };
         }
 

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using webserver.IServices;
+using webserver.Services;
 using web_server.bl;
 using web_server.IServices;
 using web_server.Middlewares;
@@ -29,6 +31,11 @@ namespace web_server
             var ui = new UserRequestIdentity();
             services.AddScoped<IGetUserRequestIdentity>(provider => ui);
             services.AddScoped<ISetUserRequestIdentity>(provider => ui);
+
+            
+            services.AddScoped(typeof(ICustomLogger<>), typeof(CustomLogger<>));
+            services.AddScoped<IEventIdGenerator, EventIdGenerator>();
+
             new ComponentConfiguration().Register(services);
         }
 

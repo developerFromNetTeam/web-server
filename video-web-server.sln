@@ -9,17 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.bl", "web-server
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.dal", "web-server.dal\web-server.dal.csproj", "{E14EDAC3-B7F7-4D06-B191-64DDED90F23A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.loging", "web-server.loging\web-server.loging.csproj", "{0D50B70F-7A23-4A56-B4E8-38B0D4ED1179}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.idal", "web-server.idal\web-server.idal.csproj", "{0DFFD122-261B-4713-B53D-D425AF6BCD4D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.ibl", "web-server.ibl\web-server.ibl.csproj", "{AE0F3E71-D154-4F28-B76E-F58F1CCBFC62}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.common", "web-server.common\web-server.common.csproj", "{FA7150C5-CD8B-4154-8EDE-8DE8A8A1D9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashGenerator", "HashGenerator\HashGenerator.csproj", "{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HashGenerator", "HashGenerator\HashGenerator.csproj", "{5D976A83-AD19-4BEE-B0E5-AA9D6C083FD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web-server.hash-generator", "web-server.hash-generator\web-server.hash-generator.csproj", "{B6F7EEED-7932-42E2-BE74-14152372F104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-server.hash-generator", "web-server.hash-generator\web-server.hash-generator.csproj", "{B6F7EEED-7932-42E2-BE74-14152372F104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{E14EDAC3-B7F7-4D06-B191-64DDED90F23A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E14EDAC3-B7F7-4D06-B191-64DDED90F23A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E14EDAC3-B7F7-4D06-B191-64DDED90F23A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D50B70F-7A23-4A56-B4E8-38B0D4ED1179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D50B70F-7A23-4A56-B4E8-38B0D4ED1179}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D50B70F-7A23-4A56-B4E8-38B0D4ED1179}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D50B70F-7A23-4A56-B4E8-38B0D4ED1179}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0DFFD122-261B-4713-B53D-D425AF6BCD4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DFFD122-261B-4713-B53D-D425AF6BCD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DFFD122-261B-4713-B53D-D425AF6BCD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
