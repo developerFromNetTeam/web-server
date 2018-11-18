@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using webserver.IServices;
 using webserver.Services;
 using web_server.bl;
@@ -40,14 +41,18 @@ namespace web_server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {
-            app.UseCors(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            logger.LogInformation($"Development: {env.IsDevelopment()}, Production: {env.IsProduction()}");
             if (env.IsDevelopment())
             {
+                app.UseCors("Development");
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseCors("Production");
+            }
             app.UseMiddleware<AuthMiddleware>();
             app.UseMvc();
         }
