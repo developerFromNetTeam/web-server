@@ -19,5 +19,9 @@
         public static string CameraSystemName = "CameraSystemName";
         public static string CameraUserName = "CameraUserName";
         public static string IsNotificationEnable = "IsNotificationEnable";
+        public static string VideoStartDateLocal = "VideoStartDateLocal";
+        public static string FileName = "FileName";
+        public static string CameraName = "CameraName";
+        public static string FilePath = "FilePath";
     }
 }

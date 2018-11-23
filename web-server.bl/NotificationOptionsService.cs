@@ -29,16 +29,9 @@ namespace web_server.bl
                 new BsonElement(MongoDbFields.IsNotificationEnable,x.IsNotificationEnable)
             }))));
 
-            try
-            {
-                await this.mongoContext.UpdateItemAsync(MongoDbCollection.dvrNotificationOptions,
-                    new BsonDocument(MongoDbFields.DVRName, dvrName),
-                    new BsonDocument(MongoDbQueryOperators.Set, new BsonDocument(MongoDbFields.NotificationOptions, bsonArrayToUpdate)));
-            }
-            catch (Exception ex)
-            {
-
-            }
+            await this.mongoContext.UpdateItemAsync(MongoDbCollection.dvrNotificationOptions,
+                new BsonDocument(MongoDbFields.DVRName, dvrName),
+                new BsonDocument(MongoDbQueryOperators.Set, new BsonDocument(MongoDbFields.NotificationOptions, bsonArrayToUpdate)));
         }
 
         public async Task<IEnumerable<ibl.NotificationOptions>> GetOptions(string dvrName)
@@ -58,10 +51,5 @@ namespace web_server.bl
                     CameraUserName = x.CameraUserName
                 }).ToList();
         }
-
-        //public Task SetOptions(IEnumerable<NotificationOptions> options, string dvrName)
-        //{
-
-        //}
     }
 }

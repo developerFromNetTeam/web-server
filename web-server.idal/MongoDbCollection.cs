@@ -5,6 +5,7 @@
         users,
         activeSessions,
         historySessions,
-        dvrNotificationOptions
+        dvrNotificationOptions,
+        uploadedVideoFiles
     }
 }

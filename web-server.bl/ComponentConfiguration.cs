@@ -13,6 +13,7 @@ namespace web_server.bl
             services.AddSingleton<IFcmTokenService, FcmTokenService>();
             services.AddSingleton<INotificationOptionsService, NotificationOptionsService>();
             services.AddSingleton<IMailClient, MailClient>();
+            services.AddSingleton<ICapturedVideoService, CapturedVideoService>();
 
             new web_server.dal.ComponentConfiguration().Register(services);
         }
